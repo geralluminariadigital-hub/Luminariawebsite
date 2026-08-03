@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-PT" style="background:#FAFBFD;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="robots" content="noindex, follow">
+  <title>Política de Privacidade — Luminária</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { font-size:16px; scroll-behavior:smooth; }
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: #FAFBFD;
+      color: #0A0F1E;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Nav simples */
+    .nav {
+      position: sticky; top: 0;
+      background: rgba(250,251,253,.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #E8EBF2;
+      padding: 0 32px; z-index: 100;
+    }
+    .nav-inner {
+      max-width: 800px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: #0A0F1E; text-decoration: none;
+    }
+    .nav-back {
+      font-size: .78rem; color: #8A93B0;
+      text-decoration: none; display: flex; align-items: center; gap: 6px;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: #2D5BE3; }
+    .nav-back svg { flex-shrink: 0; }
+
+    /* Conteúdo */
+    .wrap {
+      max-width: 800px; margin: 0 auto;
+      padding: 72px 32px 120px;
+    }
+
+    /* Cabeçalho */
+    .doc-header { margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid #E8EBF2; }
+    .doc-eyebrow {
+      font-size: .63rem; font-weight: 600;
+      letter-spacing: .20em; text-transform: uppercase;
+      color: #2D5BE3; margin-bottom: 12px;
+    }
+    .doc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 500; color: #0A0F1E;
+      margin-bottom: 16px; letter-spacing: -.01em;
+    }
+    .doc-meta {
+      font-size: .80rem; color: #8A93B0;
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .doc-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* Índice */
+    .toc {
+      background: #F3F5F9;
+      border: 1px solid #E8EBF2;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 56px;
+    }
+    .toc-title {
+      font-size: .65rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: #2D5BE3; margin-bottom: 14px;
+    }
+    .toc ol {
+      padding-left: 18px;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .toc a {
+      font-size: .88rem; color: #4A5270;
+      text-decoration: none; transition: color .2s;
+    }
+    .toc a:hover { color: #2D5BE3; }
+
+    /* Secções */
+    .section { margin-bottom: 52px; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 500;
+      color: #0A0F1E; margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #E8EBF2;
+      display: flex; align-items: baseline; gap: 10px;
+    }
+    .section-num {
+      font-size: .70rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: #2D5BE3; flex-shrink: 0;
+    }
+    p { margin-bottom: 14px; font-size: .93rem; color: #4A5270; }
+    p:last-child { margin-bottom: 0; }
+    strong { color: #0A0F1E; font-weight: 500; }
+
+    /* Lista */
+    ul, ol { padding-left: 20px; margin-bottom: 14px; }
+    li { font-size: .93rem; color: #4A5270; margin-bottom: 6px; line-height: 1.7; }
+    li strong { color: #0A0F1E; }
+
+    /* Tabela */
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin: 20px 0; font-size: .88rem;
+    }
+    .data-table th {
+      background: #0A0F1E; color: #FAFBFD;
+      font-weight: 500; letter-spacing: .04em;
+      padding: 10px 14px; text-align: left;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .78rem;
+    }
+    .data-table td {
+      padding: 10px 14px; color: #4A5270;
+      border-bottom: 1px solid #E8EBF2;
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(even) td { background: #F3F5F9; }
+
+    /* Caixa de destaque */
+    .highlight-box {
+      background: rgba(45,91,227,.05);
+      border: 1px solid rgba(45,91,227,.18);
+      border-left: 3px solid #2D5BE3;
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight-box p { color: #0A0F1E; margin-bottom: 0; font-size: .90rem; }
+
+    /* Contacto final */
+    .contact-box {
+      background: #0A0F1E;
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 56px;
+    }
+    .contact-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 500;
+      color: #FFFFFF; margin-bottom: 12px;
+    }
+    .contact-box p { color: rgba(255,255,255,.55); font-size: .88rem; margin-bottom: 8px; }
+    .contact-box a { color: #5B82F5; }
+
+    /* Rodapé */
+    .doc-footer {
+      margin-top: 64px; padding-top: 24px;
+      border-top: 1px solid #E8EBF2;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .doc-footer p { font-size: .75rem; color: #8A93B0; margin: 0; }
+    .doc-footer a { color: #2D5BE3; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 48px 20px 80px; }
+      .nav { padding: 0 20px; }
+      .data-table { font-size: .80rem; }
+      .data-table th, .data-table td { padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Luminária</a>
+      <a href="index.html" class="nav-back">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Voltar ao site
+      </a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+
+    <!-- Cabeçalho -->
+    <div class="doc-header">
+      <p class="doc-eyebrow">Documentação Legal</p>
+      <h1 class="doc-title">Política de Privacidade</h1>
+      <div class="doc-meta">
+        <span>📅 Última actualização: <strong>Julho 2026</strong></span>
+        <span>🏢 Responsável: <strong>Luminária</strong></span>
+        <span>📍 Portugal (RGPD)</span>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Resumo simples:</strong> Só recolhemos os dados que nos envia voluntariamente através do formulário de contacto (nome, email, telefone, mensagem). Usamos esses dados exclusivamente para lhe responder. Não vendemos, não partilhamos, não fazemos marketing sem consentimento. Pode pedir a eliminação dos seus dados a qualquer momento.</p>
+    </div>
+
+    <!-- Índice -->
+    <div class="toc">
+      <p class="toc-title">Índice</p>
+      <ol>
+        <li><a href="#s1">Quem somos e como contactar</a></li>
+        <li><a href="#s2">Que dados recolhemos</a></li>
+        <li><a href="#s3">Para que usamos os seus dados</a></li>
+        <li><a href="#s4">Base legal do tratamento</a></li>
+        <li><a href="#s5">Durante quanto tempo guardamos os dados</a></li>
+        <li><a href="#s6">Com quem partilhamos os dados</a></li>
+        <li><a href="#s7">Os seus direitos</a></li>
+        <li><a href="#s8">Segurança</a></li>
+        <li><a href="#s9">Cookies</a></li>
+        <li><a href="#s10">Alterações a esta política</a></li>
+        <li><a href="#s11">Contacto e reclamações</a></li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <div class="section" id="s1">
+      <h2 class="section-title"><span class="section-num">01</span> Quem somos e como contactar</h2>
+      <p>A <strong>Luminária</strong> é uma agência digital portuguesa que presta serviços de criação e gestão de sites, marketing digital e CRM a pequenas e médias empresas.</p>
+      <p>Para efeitos do Regulamento (UE) 2016/679 (RGPD) e da legislação portuguesa de protecção de dados, a Luminária é a <strong>Responsável pelo Tratamento</strong> dos dados pessoais recolhidos através deste website.</p>
+      <table class="data-table">
+        <tr><th>Dado</th><th>Informação</th></tr>
+        <tr><td><strong>Denominação</strong></td><td>Luminária</td></tr>
+        <tr><td><strong>Website</strong></td><td>luminaria.pt</td></tr>
+        <tr><td><strong>Email de contacto</strong></td><td>privacidade@luminaria.pt</td></tr>
+        <tr><td><strong>País</strong></td><td>Portugal</td></tr>
+        <tr><td><strong>Autoridade supervisora</strong></td><td>CNPD — Comissão Nacional de Protecção de Dados (cnpd.pt)</td></tr>
+      </table>
+    </div>
+
+    <!-- 2 -->
+    <div class="section" id="s2">
+      <h2 class="section-title"><span class="section-num">02</span> Que dados recolhemos</h2>
+      <p>Recolhemos apenas os dados que nos fornece voluntariamente através do <strong>formulário de contacto</strong> do website:</p>
+      <table class="data-table">
+        <tr><th>Campo</th><th>Obrigatório</th><th>Finalidade</th></tr>
+        <tr><td><strong>Nome</strong></td><td>Sim</td><td>Identificação e personalização da resposta</td></tr>
+        <tr><td><strong>Email</strong></td><td>Sim</td><td>Envio da resposta ao seu pedido</td></tr>
+        <tr><td><strong>Telefone</strong></td><td>Não</td><td>Contacto alternativo, se preferir ser contactado por telefone</td></tr>
+        <tr><td><strong>Empresa</strong></td><td>Não</td><td>Compreender melhor o seu contexto e necessidades</td></tr>
+        <tr><td><strong>Assunto</strong></td><td>Não</td><td>Encaminhar o pedido para a área adequada</td></tr>
+        <tr><td><strong>Mensagem</strong></td><td>Sim</td><td>Compreender o seu pedido e responder adequadamente</td></tr>
+      </table>
+      <p>Recolhemos também automaticamente o <strong>endereço IP</strong> do dispositivo que submete o formulário, exclusivamente para fins de segurança (prevenção de spam e abusos). Este dado não é associado à sua identidade nem utilizado para outros fins.</p>
+      <p><strong>Não recolhemos</strong> dados de categorias especiais (saúde, origem étnica, convicções religiosas ou políticas, dados biométricos, etc.).</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="section" id="s3">
+      <h2 class="section-title"><span class="section-num">03</span> Para que usamos os seus dados</h2>
+      <p>Os seus dados são utilizados exclusivamente para:</p>
+      <ul>
+        <li><strong>Responder ao seu pedido de contacto</strong> — enviar-lhe uma resposta à mensagem que nos enviou</li>
+        <li><strong>Enviar confirmação de recepção</strong> — email automático a confirmar que recebemos a sua mensagem</li>
+        <li><strong>Segurança do website</strong> — o endereço IP é usado para prevenir spam e abusos do formulário</li>
+      </ul>
+      <p><strong>Não utilizamos os seus dados para:</strong> envio de newsletters ou marketing sem consentimento explícito, criação de perfis comportamentais, publicidade segmentada, venda ou cedência a terceiros.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="section" id="s4">
+      <h2 class="section-title"><span class="section-num">04</span> Base legal do tratamento</h2>
+      <p>O tratamento dos seus dados pessoais assenta nas seguintes bases legais previstas no artigo 6.º do RGPD:</p>
+      <ul>
+        <li><strong>Interesse legítimo (art. 6.º/1/f)</strong> — responder a pedidos de contacto que nos dirige voluntariamente e garantir a segurança do website</li>
+        <li><strong>Consentimento (art. 6.º/1/a)</strong> — quando aplicável, nomeadamente para eventual envio de comunicações de marketing (apenas com opt-in explícito)</li>
+      </ul>
+    </div>
+
+    <!-- 5 -->
+    <div class="section" id="s5">
+      <h2 class="section-title"><span class="section-num">05</span> Durante quanto tempo guardamos os dados</h2>
+      <table class="data-table">
+        <tr><th>Dados</th><th>Período de retenção</th><th>Motivo</th></tr>
+        <tr><td>Mensagens do formulário (email)</td><td>3 anos</td><td>Prazo razoável para gestão de relações comerciais</td></tr>
+        <tr><td>Endereço IP (logs de segurança)</td><td>90 dias</td><td>Prevenção de abusos e segurança</td></tr>
+        <tr><td>Dados de clientes activos</td><td>Duração do contrato + 5 anos</td><td>Obrigações legais e fiscais (art. 40.º CIRS)</td></tr>
+      </table>
+      <p>Após estes períodos, os dados são eliminados de forma segura ou anonimizados.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="section" id="s6">
+      <h2 class="section-title"><span class="section-num">06</span> Com quem partilhamos os dados</h2>
+      <p>Os seus dados <strong>não são vendidos nem cedidos</strong> a terceiros para fins comerciais. Partilhamos apenas com:</p>
+      <table class="data-table">
+        <tr><th>Subcontratante</th><th>País</th><th>Finalidade</th><th>Garantia</th></tr>
+        <tr><td><strong>Hostinger International Ltd.</strong></td><td>UE (Lituânia)</td><td>Alojamento do website e processamento do formulário</td><td>Tratamento dentro da UE — RGPD aplicável directamente</td></tr>
+        <tr><td><strong>Google LLC (Gmail)</strong></td><td>EUA</td><td>Envio de emails de notificação e confirmação</td><td>Cláusulas contratuais-tipo UE; DPF certificado</td></tr>
+      </table>
+      <p>O alojamento é feito pela Hostinger, empresa sediada na Lituânia (UE), pelo que o tratamento de dados ocorre dentro do Espaço Económico Europeu e está directamente sujeito ao RGPD — sem necessidade de mecanismos adicionais de transferência internacional.</p>
+      <p>Podemos também partilhar dados quando <strong>legalmente obrigados</strong> — por exemplo, em resposta a ordem judicial ou requisição de autoridade competente.</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="section" id="s7">
+      <h2 class="section-title"><span class="section-num">07</span> Os seus direitos</h2>
+      <p>Ao abrigo do RGPD, tem os seguintes direitos relativamente aos seus dados pessoais:</p>
+      <ul>
+        <li><strong>Acesso (art. 15.º)</strong> — saber que dados temos sobre si</li>
+        <li><strong>Rectificação (art. 16.º)</strong> — corrigir dados inexactos ou incompletos</li>
+        <li><strong>Eliminação (art. 17.º)</strong> — pedir a eliminação dos seus dados ("direito a ser esquecido")</li>
+        <li><strong>Limitação do tratamento (art. 18.º)</strong> — restringir o uso dos seus dados em determinadas circunstâncias</li>
+        <li><strong>Portabilidade (art. 20.º)</strong> — receber os seus dados num formato estruturado e legível por máquina</li>
+        <li><strong>Oposição (art. 21.º)</strong> — opor-se ao tratamento baseado em interesse legítimo</li>
+        <li><strong>Não sujeição a decisões automatizadas (art. 22.º)</strong> — não tomamos decisões automatizadas com impacto significativo com base nos seus dados</li>
+      </ul>
+      <div class="highlight-box">
+        <p>Para exercer qualquer um destes direitos, envie um email para <strong>privacidade@luminaria.pt</strong> com o assunto "Exercício de Direitos RGPD". Responderemos no prazo máximo de <strong>30 dias</strong>.</p>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="section" id="s8">
+      <h2 class="section-title"><span class="section-num">08</span> Segurança</h2>
+      <p>Implementamos medidas técnicas e organizacionais adequadas para proteger os seus dados pessoais, incluindo:</p>
+      <ul>
+        <li><strong>HTTPS obrigatório</strong> — toda a comunicação é encriptada (TLS 1.2+)</li>
+        <li><strong>HSTS</strong> — força ligações seguras durante 2 anos</li>
+        <li><strong>Validação e sanitização</strong> — todos os dados do formulário são limpos antes do processamento</li>
+        <li><strong>Rate limiting</strong> — limite de pedidos por IP para prevenir abusos</li>
+        <li><strong>Honeypot anti-spam</strong> — detecção e bloqueio de submissões automáticas</li>
+        <li><strong>Headers de segurança HTTP</strong> — CSP, X-Frame-Options, Permissions-Policy e outros</li>
+        <li><strong>Acesso restrito</strong> — apenas pessoal autorizado da Luminária tem acesso aos dados recebidos</li>
+      </ul>
+      <p>Em caso de violação de dados pessoais que constitua risco para os seus direitos e liberdades, notificaremos a CNPD no prazo de 72 horas e os titulares afectados sem demora injustificada, nos termos dos artigos 33.º e 34.º do RGPD.</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="section" id="s9">
+      <h2 class="section-title"><span class="section-num">09</span> Cookies</h2>
+      <p>O website da Luminária utiliza dois tipos de cookies, claramente distintos: <strong>cookies essenciais</strong>, que são estritamente necessários ao funcionamento do site, e <strong>cookies de analítica</strong>, que só são activados com o seu consentimento explícito.</p>
+
+      <h3 style="font-size:.95rem;font-weight:600;color:#1E293B;margin:20px 0 8px;">Cookies essenciais (sem consentimento necessário)</h3>
+      <p>Estes cookies são tecnicamente indispensáveis e não requerem consentimento nos termos da Lei n.º 41/2004 (alterada pela Lei n.º 46/2012) e da Directiva ePrivacy:</p>
+      <table class="data-table">
+        <tr><th>Cookie</th><th>Tipo</th><th>Finalidade</th><th>Duração</th></tr>
+        <tr><td><code>ld-cookies</code></td><td>Essencial</td><td>Guardar a preferência de cookies do utilizador (aceitar/recusar)</td><td>12 meses</td></tr>
+        <tr><td><code>ld-a11y</code></td><td>Essencial</td><td>Guardar preferências de acessibilidade (contraste, animações, fonte)</td><td>12 meses</td></tr>
+      </table>
+
+      <h3 style="font-size:.95rem;font-weight:600;color:#1E293B;margin:20px 0 8px;">Cookies de analítica (apenas com consentimento)</h3>
+      <p>Estes cookies <strong>só são activados se clicar em "Aceitar tudo"</strong> no banner de cookies. Se clicar em "Só essenciais", estes cookies não são instalados.</p>
+      <table class="data-table">
+        <tr><th>Cookie</th><th>Fornecedor</th><th>Finalidade</th><th>Duração</th></tr>
+        <tr><td><code>_ga</code></td><td>Google Analytics</td><td>Distinguir utilizadores únicos para análise de tráfego</td><td>2 anos</td></tr>
+        <tr><td><code>_ga_*</code></td><td>Google Analytics</td><td>Manter o estado da sessão de análise</td><td>2 anos</td></tr>
+      </table>
+      <p>O Google Analytics está configurado com <strong>anonimização de IP</strong>. Os dados são tratados pela Google LLC, com transferência para os EUA ao abrigo das Cláusulas Contratuais Tipo aprovadas pela Comissão Europeia.</p>
+      <p>Pode retirar o consentimento a qualquer momento limpando os cookies do browser ou contactando-nos através de <a href="mailto:geral@luminariadigital.pt">geral@luminariadigital.pt</a>. Nesse caso, na próxima visita o banner voltará a aparecer.</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="section" id="s10">
+      <h2 class="section-title"><span class="section-num">10</span> Alterações a esta política</h2>
+      <p>Podemos actualizar esta Política de Privacidade periodicamente para reflectir alterações nas nossas práticas ou na legislação aplicável. A data da última actualização está indicada no cabeçalho deste documento.</p>
+      <p>Alterações significativas serão comunicadas de forma destacada no website. Recomendamos que consulte esta página regularmente.</p>
+    </div>
+
+    <!-- 11 -->
+    <div class="section" id="s11">
+      <h2 class="section-title"><span class="section-num">11</span> Contacto e reclamações</h2>
+      <p>Para qualquer questão relacionada com o tratamento dos seus dados pessoais — incluindo o exercício dos seus direitos de acesso, rectificação, apagamento, portabilidade, oposição ou limitação do tratamento — pode contactar-nos através dos seguintes meios:</p>
+      <table class="data-table">
+        <tr><th>Meio</th><th>Contacto</th></tr>
+        <tr><td>Email (preferencial)</td><td><a href="mailto:geral@luminariadigital.pt">geral@luminariadigital.pt</a></td></tr>
+        <tr><td>Telefone / WhatsApp</td><td>+351 900 000 000</td></tr>
+        <tr><td>Localização</td><td>Lisboa, Portugal</td></tr>
+      </table>
+      <p>Comprometemo-nos a responder ao seu pedido no prazo máximo de <strong>30 dias</strong> a contar da data de recepção, podendo esse prazo ser prorrogado por mais 60 dias em casos de especial complexidade, com notificação prévia.</p>
+      <p>Tem também o direito de apresentar reclamação junto da autoridade de controlo competente em Portugal: <strong>Comissão Nacional de Protecção de Dados (CNPD)</strong> — <a href="https://www.cnpd.pt" target="_blank" rel="noopener">www.cnpd.pt</a>.</p>
+    </div>
+
+    <div class="contact-box">
+      <h3>Contacto de Privacidade</h3>
+      <p>📧 Email: <a href="mailto:privacidade@luminaria.pt">privacidade@luminaria.pt</a></p>
+      <p>🌐 Website: <a href="https://luminaria.pt">luminaria.pt</a></p>
+      <p style="margin-top:16px; color:rgba(255,255,255,.38); font-size:.82rem;">
+        Se considerar que o tratamento dos seus dados viola o RGPD, tem o direito de apresentar reclamação à autoridade de controlo portuguesa:
+      </p>
+      <p><a href="https://www.cnpd.pt" target="_blank" rel="noopener noreferrer">CNPD — Comissão Nacional de Protecção de Dados</a><br>
+      <span style="color:rgba(255,255,255,.38); font-size:.82rem;">Rua de São Bento, 148-3.º · 1200-821 Lisboa · Tel: +351 213 928 400</span></p>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="doc-footer">
+      <p>© 2026 Luminária · <a href="index.html">luminaria.pt</a></p>
+      <p>Política em conformidade com o RGPD (UE) 2016/679 e a Lei n.º 58/2019</p>
+    </div>
+
+  </div>
+</body>
+</html>
