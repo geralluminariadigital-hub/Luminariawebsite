@@ -657,7 +657,7 @@ if(form){form.addEventListener('submit',function(e){
 
   /* Honeypot — bots preenchem o campo escondido; fingimos sucesso */
   var hp=(document.getElementById('_hp')||{}).value||'';
-  var btn=form.querySelector('.btn-primary'),txt=btn.querySelector('.btn-text');
+  var btn=document.getElementById('btnEmail'),txt=btn?btn.querySelector('.btn-text'):null;
   if(hp!==''){form.reset();formOk.classList.add('show');setTimeout(function(){formOk.classList.remove('show');},7000);return;}
 
   if(!window.emailjs||EMAILJS_CFG.publicKey.indexOf('AQUI')!==-1){
