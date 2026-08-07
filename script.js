@@ -625,6 +625,25 @@ if (window.emailjs && EMAILJS_CFG.publicKey.indexOf('AQUI') === -1) {
   emailjs.init({ publicKey: EMAILJS_CFG.publicKey });
 }
 
+/* Botao WhatsApp */
+var btnWA = document.getElementById('btnWhatsApp');
+if(btnWA && form){
+  btnWA.addEventListener('click', function(){
+    var nome     = (document.getElementById('nome')||{value:''}).value.trim();
+    var empresa  = (document.getElementById('empresa')||{value:''}).value.trim();
+    var assunto  = (document.getElementById('assunto')||{value:''}).value.trim();
+    var mensagem = (document.getElementById('mensagem')||{value:''}).value.trim();
+    var linhas = [];
+    linhas.push('Ola, contacto via luminaria.pt');
+    if(nome)     linhas.push('Nome: ' + nome);
+    if(empresa)  linhas.push('Empresa: ' + empresa);
+    if(assunto)  linhas.push('Assunto: ' + assunto);
+    if(mensagem) linhas.push('Mensagem: ' + mensagem);
+    var msg = encodeURIComponent(linhas.join('\n'));
+    window.open('https://wa.me/351961149641?text=' + msg, '_blank');
+  });
+}
+
 if(form){form.addEventListener('submit',function(e){
   e.preventDefault();
   var em=document.getElementById('email'),tel=document.getElementById('telefone'),mg=document.getElementById('mensagem'),ok=true;
