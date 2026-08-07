@@ -10,7 +10,7 @@ function loadGA(){
   function gtag(){ dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag('js', new Date());
-  gtag('config', id, { anonymize_ip: true });
+  gtag('config', id, { anonymize_ip: true, cookie_flags: 'SameSite=None;Secure' });
 }
 
 /* ════════ COOKIES + ACESSIBILIDADE — aguarda DOM ════════ */
