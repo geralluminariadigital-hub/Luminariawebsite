@@ -10,7 +10,7 @@ function loadGA(){
   function gtag(){ dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag('js', new Date());
-  gtag('config', id, { anonymize_ip: true, cookie_flags: 'SameSite=None;Secure' });
+  gtag('config', id, { anonymize_ip: true });
 }
 
 /* ════════ COOKIES + ACESSIBILIDADE — aguarda DOM ════════ */
@@ -610,82 +610,74 @@ window.addEventListener('scroll',function(){
 var faqBtns=document.querySelectorAll('.faq-q');
 faqBtns.forEach(function(btn){btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';faqBtns.forEach(function(b){b.setAttribute('aria-expanded','false');b.nextElementSibling.classList.remove('open');});if(!open){btn.setAttribute('aria-expanded','true');btn.nextElementSibling.classList.add('open');}});});
 
-/* Form */
-/* ════════════════════════════════════════════════
-   CONFIGURAÇÃO EMAILJS — preencher com os 3 valores
-   do painel em dashboard.emailjs.com
-   ════════════════════════════════════════════════ */
+/* ════ EMAILJS CONFIG ════ */
 var EMAILJS_CFG = {
-  publicKey:  '39arumPjSQmsLiiU7',    /* Account → General → Public Key */
-  serviceId:  'service_6c0pd55',    /* Email Services → Service ID   */
-  templateId: '746ir64',   /* Email Templates → Template ID */
+  publicKey:  '39arumPjSQmsLiiU7',
+  serviceId:  'service_6c0pd55',
+  templateId: '746ir64',
 };
-
 if (window.emailjs && EMAILJS_CFG.publicKey.indexOf('AQUI') === -1) {
   emailjs.init({ publicKey: EMAILJS_CFG.publicKey });
 }
 
 /* Botao WhatsApp */
 var btnWA = document.getElementById('btnWhatsApp');
-if(btnWA && form){
+if(btnWA){
   btnWA.addEventListener('click', function(){
     var nome     = (document.getElementById('nome')||{value:''}).value.trim();
     var empresa  = (document.getElementById('empresa')||{value:''}).value.trim();
     var assunto  = (document.getElementById('assunto')||{value:''}).value.trim();
     var mensagem = (document.getElementById('mensagem')||{value:''}).value.trim();
     var linhas = [];
-    linhas.push('Ola, contacto via luminaria.pt');
+    linhas.push('Ola! Vim pelo site luminaria.pt e gostava de saber mais sobre os vossos servicos.');
+    linhas.push('');
     if(nome)     linhas.push('Nome: ' + nome);
     if(empresa)  linhas.push('Empresa: ' + empresa);
-    if(assunto)  linhas.push('Assunto: ' + assunto);
-    if(mensagem) linhas.push('Mensagem: ' + mensagem);
+    if(assunto)  linhas.push('Servico pretendido: ' + assunto);
+    if(mensagem) { linhas.push(''); linhas.push('Mensagem:'); linhas.push(mensagem); }
+    linhas.push('');
+    linhas.push('Quando podemos agendar uma conversa?');
     var msg = encodeURIComponent(linhas.join('\n'));
     window.open('https://wa.me/351961149641?text=' + msg, '_blank');
   });
 }
 
+/* Botao Email via EmailJS */
 if(form){form.addEventListener('submit',function(e){
   e.preventDefault();
   var em=document.getElementById('email'),tel=document.getElementById('telefone'),mg=document.getElementById('mensagem'),ok=true;
-  /* email OU telemóvel obrigatório */
   var contactOk=((em&&em.value.trim())||(tel&&tel.value.trim()));
   var errHint=document.getElementById('contactError');
   if(!contactOk){if(em)em.style.borderColor='rgba(239,68,68,.80)';if(tel)tel.style.borderColor='rgba(239,68,68,.80)';if(errHint)errHint.style.display='block';ok=false;}
   else{if(em)em.style.borderColor='';if(tel)tel.style.borderColor='';if(errHint)errHint.style.display='none';}
   [mg].forEach(function(el){if(!el.value.trim()){el.style.borderColor='rgba(91,130,245,.80)';ok=false;}else{el.style.borderColor='';}});
   if(!ok)return;
-
-  /* Honeypot — bots preenchem o campo escondido; fingimos sucesso */
   var hp=(document.getElementById('_hp')||{}).value||'';
   var btn=document.getElementById('btnEmail'),txt=btn?btn.querySelector('.btn-text'):null;
   if(hp!==''){form.reset();formOk.classList.add('show');setTimeout(function(){formOk.classList.remove('show');},7000);return;}
-
   if(!window.emailjs||EMAILJS_CFG.publicKey.indexOf('AQUI')!==-1){
-    alert('Formulário ainda não configurado. Contacte-nos por email ou WhatsApp.');
-    return;
+    alert('Formulario ainda nao configurado. Contacte-nos por email ou WhatsApp.');return;
   }
-
-  txt.textContent='A enviar...';btn.disabled=true;
-
+  if(btn)btn.disabled=true;
+  if(txt)txt.textContent='A enviar...';
   emailjs.send(EMAILJS_CFG.serviceId, EMAILJS_CFG.templateId, {
     nome:     document.getElementById('nome').value,
-    empresa:  document.getElementById('empresa').value || '—',
+    empresa:  document.getElementById('empresa').value || '-',
     email:    (em.value || '').trim(),
-    telefone: document.getElementById('telefone').value || '—',
-    website:  (document.getElementById('website')||{value:''}).value || '—',
-    assunto:  document.getElementById('assunto').value || '—',
+    telefone: document.getElementById('telefone').value || '-',
+    website:  (document.getElementById('website')||{value:''}).value || '-',
+    assunto:  document.getElementById('assunto').value || '-',
     mensagem: mg.value,
-    /* usado no Reply-To do template; se não houver email, responde-se por telefone */
     reply_to: (em.value || '').trim() || 'geral@luminaria.pt',
     data:     new Date().toLocaleString('pt-PT'),
   }).then(function(){
-    btn.disabled=false;txt.textContent='Enviar Mensagem';
+    if(btn)btn.disabled=false;if(txt)txt.textContent='Enviar Email';
     form.reset();formOk.classList.add('show');
     setTimeout(function(){formOk.classList.remove('show');},7000);
   }).catch(function(err){
-    btn.disabled=false;txt.textContent='Enviar Mensagem';
-    console.error('[Luminária] EmailJS:',err);
-    alert('Não foi possível enviar a mensagem. Tente novamente ou contacte-nos por WhatsApp.');
+    if(btn)btn.disabled=false;if(txt)txt.textContent='Enviar Email';
+    console.error('[Luminaria] EmailJS:',err);
+    alert('Nao foi possivel enviar. Tente novamente ou contacte-nos por WhatsApp.');
   });
 })}
 
