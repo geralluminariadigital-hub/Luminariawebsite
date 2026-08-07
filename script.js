@@ -1,7 +1,7 @@
 /* ════════ GOOGLE ANALYTICS — só com consentimento ════════ */
 function loadGA(){
   var id = window.GA_ID;
-  if(!id || id === 'G-4CMXRX3VQE') return;
+  if(!id || id === 'G-XXXXXXXXXX') return;
   var s = document.createElement('script');
   s.async = true;
   s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
