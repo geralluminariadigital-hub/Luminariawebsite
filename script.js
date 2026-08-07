@@ -611,15 +611,63 @@ var faqBtns=document.querySelectorAll('.faq-q');
 faqBtns.forEach(function(btn){btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';faqBtns.forEach(function(b){b.setAttribute('aria-expanded','false');b.nextElementSibling.classList.remove('open');});if(!open){btn.setAttribute('aria-expanded','true');btn.nextElementSibling.classList.add('open');}});});
 
 /* Form */
-if(form){form.addEventListener('submit',function(e){e.preventDefault();var em=document.getElementById('email'),tel=document.getElementById('telefone'),mg=document.getElementById('mensagem'),ok=true;/* email OU telemóvel obrigatório */var contactOk=((em&&em.value.trim())||(tel&&tel.value.trim()));var errHint=document.getElementById('contactError');if(!contactOk){if(em)em.style.borderColor='rgba(239,68,68,.80)';if(tel)tel.style.borderColor='rgba(239,68,68,.80)';if(errHint)errHint.style.display='block';ok=false;}else{if(em)em.style.borderColor='';if(tel)tel.style.borderColor='';if(errHint)errHint.style.display='none';}[mg].forEach(function(el){if(!el.value.trim()){el.style.borderColor='rgba(91,130,245,.80)';ok=false;}else{el.style.borderColor='';}});if(!ok)return;var btn=form.querySelector('.btn-primary'),txt=btn.querySelector('.btn-text');txt.textContent='A enviar...';btn.disabled=true;fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-              nome:     document.getElementById('nome').value,
-              empresa:  document.getElementById('empresa').value,
-              email:    em.value,
-              telefone: document.getElementById('telefone').value,
-              website:  (document.getElementById('website')||{value:''}).value,
-              assunto:  document.getElementById('assunto').value,
-              mensagem: mg.value,
-              _hp:      (document.getElementById('_hp')||{}).value||'',
-            })}).then(function(r){return r.json();}).then(function(d){btn.disabled=false;txt.textContent='Enviar Mensagem';if(d.success){form.reset();formOk.classList.add('show');setTimeout(function(){formOk.classList.remove('show');},7000);}else{alert('Erro ao enviar.');}}).catch(function(){btn.disabled=false;txt.textContent='Enviar Mensagem';alert('Erro ao enviar.');});})}
+/* ════════════════════════════════════════════════
+   CONFIGURAÇÃO EMAILJS — preencher com os 3 valores
+   do painel em dashboard.emailjs.com
+   ════════════════════════════════════════════════ */
+var EMAILJS_CFG = {
+  publicKey:  'PUBLIC_KEY_AQUI',    /* Account → General → Public Key */
+  serviceId:  'SERVICE_ID_AQUI',    /* Email Services → Service ID   */
+  templateId: 'TEMPLATE_ID_AQUI',   /* Email Templates → Template ID */
+};
+
+if (window.emailjs && EMAILJS_CFG.publicKey.indexOf('AQUI') === -1) {
+  emailjs.init({ publicKey: EMAILJS_CFG.publicKey });
+}
+
+if(form){form.addEventListener('submit',function(e){
+  e.preventDefault();
+  var em=document.getElementById('email'),tel=document.getElementById('telefone'),mg=document.getElementById('mensagem'),ok=true;
+  /* email OU telemóvel obrigatório */
+  var contactOk=((em&&em.value.trim())||(tel&&tel.value.trim()));
+  var errHint=document.getElementById('contactError');
+  if(!contactOk){if(em)em.style.borderColor='rgba(239,68,68,.80)';if(tel)tel.style.borderColor='rgba(239,68,68,.80)';if(errHint)errHint.style.display='block';ok=false;}
+  else{if(em)em.style.borderColor='';if(tel)tel.style.borderColor='';if(errHint)errHint.style.display='none';}
+  [mg].forEach(function(el){if(!el.value.trim()){el.style.borderColor='rgba(91,130,245,.80)';ok=false;}else{el.style.borderColor='';}});
+  if(!ok)return;
+
+  /* Honeypot — bots preenchem o campo escondido; fingimos sucesso */
+  var hp=(document.getElementById('_hp')||{}).value||'';
+  var btn=form.querySelector('.btn-primary'),txt=btn.querySelector('.btn-text');
+  if(hp!==''){form.reset();formOk.classList.add('show');setTimeout(function(){formOk.classList.remove('show');},7000);return;}
+
+  if(!window.emailjs||EMAILJS_CFG.publicKey.indexOf('AQUI')!==-1){
+    alert('Formulário ainda não configurado. Contacte-nos por email ou WhatsApp.');
+    return;
+  }
+
+  txt.textContent='A enviar...';btn.disabled=true;
+
+  emailjs.send(EMAILJS_CFG.serviceId, EMAILJS_CFG.templateId, {
+    nome:     document.getElementById('nome').value,
+    empresa:  document.getElementById('empresa').value || '—',
+    email:    (em.value || '').trim(),
+    telefone: document.getElementById('telefone').value || '—',
+    website:  (document.getElementById('website')||{value:''}).value || '—',
+    assunto:  document.getElementById('assunto').value || '—',
+    mensagem: mg.value,
+    /* usado no Reply-To do template; se não houver email, responde-se por telefone */
+    reply_to: (em.value || '').trim() || 'geral@luminaria.pt',
+    data:     new Date().toLocaleString('pt-PT'),
+  }).then(function(){
+    btn.disabled=false;txt.textContent='Enviar Mensagem';
+    form.reset();formOk.classList.add('show');
+    setTimeout(function(){formOk.classList.remove('show');},7000);
+  }).catch(function(err){
+    btn.disabled=false;txt.textContent='Enviar Mensagem';
+    console.error('[Luminária] EmailJS:',err);
+    alert('Não foi possível enviar a mensagem. Tente novamente ou contacte-nos por WhatsApp.');
+  });
+})}
 
 })();
