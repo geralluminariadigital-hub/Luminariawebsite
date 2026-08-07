@@ -616,9 +616,9 @@ faqBtns.forEach(function(btn){btn.addEventListener('click',function(){var open=b
    do painel em dashboard.emailjs.com
    ════════════════════════════════════════════════ */
 var EMAILJS_CFG = {
-  publicKey:  'PUBLIC_KEY_AQUI',    /* Account → General → Public Key */
-  serviceId:  'SERVICE_ID_AQUI',    /* Email Services → Service ID   */
-  templateId: 'TEMPLATE_ID_AQUI',   /* Email Templates → Template ID */
+  publicKey:  '39arumPjSQmsLiiU7',    /* Account → General → Public Key */
+  serviceId:  'service_6c0pd55',    /* Email Services → Service ID   */
+  templateId: 'modelo_84huyi8',   /* Email Templates → Template ID */
 };
 
 if (window.emailjs && EMAILJS_CFG.publicKey.indexOf('AQUI') === -1) {
