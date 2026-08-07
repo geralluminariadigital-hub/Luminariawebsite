@@ -614,7 +614,7 @@ faqBtns.forEach(function(btn){btn.addEventListener('click',function(){var open=b
 var EMAILJS_CFG = {
   publicKey:  '39arumPjSQmsLiiU7',
   serviceId:  'service_6c0pd55',
-  templateId: '746ir64',
+  templateId: 'template_84huyi8',
 };
 if (window.emailjs && EMAILJS_CFG.publicKey.indexOf('AQUI') === -1) {
   emailjs.init({ publicKey: EMAILJS_CFG.publicKey });
