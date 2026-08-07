@@ -552,7 +552,7 @@ function mainLoop(ts){
   drawClickWaves();
   drawGlow();
   /* Em mobile: drawGlobal só quando há faíscas activas (toque) */
-  if(!_isMobile || gParts.length > 0 || gRings.length > 0) drawGlobal();
+  if(!_isMobile || gParts.length > 0 || rings.length > 0) drawGlobal();
   if(!_isMobile) drawHalo(haloTick);
   requestAnimationFrame(mainLoop);
 }
@@ -618,7 +618,7 @@ faqBtns.forEach(function(btn){btn.addEventListener('click',function(){var open=b
 var EMAILJS_CFG = {
   publicKey:  '39arumPjSQmsLiiU7',    /* Account → General → Public Key */
   serviceId:  'service_6c0pd55',    /* Email Services → Service ID   */
-  templateId: 'modelo_84huyi8',   /* Email Templates → Template ID */
+  templateId: '746ir64',   /* Email Templates → Template ID */
 };
 
 if (window.emailjs && EMAILJS_CFG.publicKey.indexOf('AQUI') === -1) {
