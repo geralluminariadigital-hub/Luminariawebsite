@@ -641,6 +641,19 @@ if(btnWA){
     linhas.push('');
     linhas.push('Quando podemos agendar uma conversa?');
     var msg = encodeURIComponent(linhas.join('\n'));
+    /* Registar lead WhatsApp no Google Sheets */
+    fetch('https://script.google.com/macros/s/AKfycbytmUbnqXW4vbH1p10GKVJ3byleFfbdnDoU0AjOeTfqWHiC0ANBfmorhw9iFOH7lC9Y-A/exec',{
+      method:'POST',
+      body:JSON.stringify({
+        nome:nome,
+        empresa:empresa,
+        email:email,
+        telefone:(document.getElementById('telefone')||{value:''}).value.trim(),
+        website:(document.getElementById('website')||{value:''}).value.trim(),
+        assunto:assunto,
+        mensagem:mensagem + ' [via WhatsApp]'
+      })
+    }).catch(function(){});
     window.open('https://wa.me/351961149641?text=' + msg, '_blank');
   });
 }
@@ -677,6 +690,19 @@ if(form){form.addEventListener('submit',function(e){
     if(btn)btn.disabled=false;if(txt)txt.textContent='Enviar Email';
     form.reset();formOk.classList.add('show');
     setTimeout(function(){formOk.classList.remove('show');},7000);
+    /* Registar lead no Google Sheets */
+    fetch('https://script.google.com/macros/s/AKfycbytmUbnqXW4vbH1p10GKVJ3byleFfbdnDoU0AjOeTfqWHiC0ANBfmorhw9iFOH7lC9Y-A/exec',{
+      method:'POST',
+      body:JSON.stringify({
+        nome:document.getElementById('nome').value,
+        empresa:(document.getElementById('empresa')||{value:''}).value||'',
+        email:(document.getElementById('email')||{value:''}).value||'',
+        telefone:(document.getElementById('telefone')||{value:''}).value||'',
+        website:(document.getElementById('website')||{value:''}).value||'',
+        assunto:(document.getElementById('assunto')||{value:''}).value||'',
+        mensagem:(document.getElementById('mensagem')||{value:''}).value||''
+      })
+    }).catch(function(){});
   }).catch(function(err){
     if(btn)btn.disabled=false;if(txt)txt.textContent='Enviar Email';
     console.error('[Luminaria] EmailJS:',err);
