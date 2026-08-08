@@ -625,16 +625,19 @@ var btnWA = document.getElementById('btnWhatsApp');
 if(btnWA){
   btnWA.addEventListener('click', function(){
     var nome     = (document.getElementById('nome')||{value:''}).value.trim();
+    var email    = (document.getElementById('email')||{value:''}).value.trim();
     var empresa  = (document.getElementById('empresa')||{value:''}).value.trim();
     var assunto  = (document.getElementById('assunto')||{value:''}).value.trim();
     var mensagem = (document.getElementById('mensagem')||{value:''}).value.trim();
     var linhas = [];
-    linhas.push('Ola! Vim pelo site luminaria.pt e gostava de saber mais sobre os vossos servicos.');
+    linhas.push('Olá!');
+    linhas.push('Vim pelo site luminaria.pt e gostava de saber mais sobre os vossos serviços.');
     linhas.push('');
     if(nome)     linhas.push('Nome: ' + nome);
+    if(email)    linhas.push('Email: ' + email);
     if(empresa)  linhas.push('Empresa: ' + empresa);
-    if(assunto)  linhas.push('Servico pretendido: ' + assunto);
-    if(mensagem) { linhas.push(''); linhas.push('Mensagem:'); linhas.push(mensagem); }
+    if(assunto)  linhas.push('Serviço pretendido: ' + assunto);
+    if(mensagem) { linhas.push(''); linhas.push('Mensagem: ' + mensagem); }
     linhas.push('');
     linhas.push('Quando podemos agendar uma conversa?');
     var msg = encodeURIComponent(linhas.join('\n'));
